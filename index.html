@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>生竞押题擂台</title>
+<title>猫猫投资大师课</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -167,8 +167,8 @@ body{font-family:'Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:
 <div class="W">
   <header class="hd">
     <h1>梭哈是一种智慧</h1>
-    <p class="s">我寻思这边能行 · 显然是这边更厉害</p>
-    <div class="local-hint"><span class="dot"></span>数据存储在本地，刷新不丢失</div>
+    <p class="s">太好了是魔法猫咪我们有救了</p>
+    <div class="local-hint"><span class="dot"></span>我寻思这边能行 · 显然是这边更厉害</div>
   </header>
 
   <!-- 数据管理 -->
@@ -192,10 +192,10 @@ body{font-family:'Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:
   <main>
     <section id="p0">
       <div class="fc">
-        <h2>提交你的押题</h2>
+        <h2>直接来罢！</h2>
         <div class="fg">
-          <div class="fg w"><label for="pn">你的名字</label><input id="pn" placeholder="真实姓名或昵称"></div>
-          <div class="fg w"><label for="pt">押题知识点</label><input id="pt" placeholder="例：光合作用的C4途径"></div>
+          <div class="fg w"><label for="pn">汝之臭名昭著</label><input id="pn" placeholder="真实姓名或昵称，不知道可以填张一硕"></div>
+          <div class="fg w"><label for="pt">押题知识点</label><input id="pt" placeholder="例：不例的吧"></div>
           <div class="fg w"><label for="pd">详细说明（选填）</label><textarea id="pd" placeholder="说说为什么觉得会考..." rows="2"></textarea></div>
           <div class="fg w"><label for="pp">收款码图片链接（选填）</label><input id="pp" placeholder="粘贴收款码截图的图片URL"></div>
         </div>
@@ -211,7 +211,7 @@ body{font-family:'Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:
     </section>
 
     <section id="p2" style="display:none">
-      <div class="st">押题贡献榜</div>
+      <div class="st">贡献值</div>
       <div id="rl"></div>
     </section>
   </main>
@@ -238,7 +238,7 @@ body{font-family:'Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:
 <div class="modal-mask" id="clearModal">
   <div class="modal">
     <h3>确认清空</h3>
-    <p>所有押题和评估数据都会被删除，这个操作不可撤销。</p>
+    <p>你疯了吗？所有押题和评估数据都会被删除，这个操作不可撤销！</p>
     <div class="modal-btns">
       <button class="cancel" onclick="closeModal('clearModal')">取消</button>
       <button class="danger" onclick="doClear()">确认清空</button>
@@ -341,12 +341,12 @@ function add(){
 
 // ═══ 评估 ═══
 function vote(tid, sc){
-  if(!me) return toast('请先输入你的名字','err');
+  if(!me) return toast('貌似你忘了什么','err');
   const i = D.evaluations.findIndex(e=>e.v===me && e.tid===tid);
   if(i>=0){ D.evaluations[i].sc=sc; D.evaluations[i].time=new Date().toISOString(); }
   else{ D.evaluations.push({v:me, tid, sc, time:new Date().toISOString()}); }
   saveLocal();
-  toast(sc?'已标记为准确':'已标记为不准确');
+  toast(sc?'我标记了一处地点':'我标记了一处地点');
   renderEL();
 }
 
@@ -447,7 +447,7 @@ function renderEL(){
   const others = me ? ps.filter(p=>p.name!==me) : ps;
   if(!ps.length){
     eh.textContent='还没有猫猫押题';
-    el.innerHTML='<div class="empty">暂无押题</div>'; return;
+    el.innerHTML='<div class="empty">嗯，不要啊</div>'; return;
   }
   if(!me){ eh.textContent='请先在上方输入你的名字'; }
   else if(!others.length){ eh.textContent='你好似太空猫猫一样'; }
@@ -463,8 +463,8 @@ function renderEL(){
       <div class="tp">${esc(p.topic)}</div>
       ${p.detail?'<div class="dt">'+esc(p.detail)+'</div>':''}
       <div class="eb">
-        <button class="ok ${my&&my.sc?'on':''}" onclick="vote('${p.id}',1)">准确</button>
-        <button class="no ${my&&!my.sc?'on':''}" onclick="vote('${p.id}',0)">不准确</button>
+        <button class="ok ${my&&my.sc?'on':''}" onclick="vote('${p.id}',1)">说的好啊</button>
+        <button class="no ${my&&!my.sc?'on':''}" onclick="vote('${p.id}',0)">大骚货走开😡</button>
       </div>
     </div>`}).join('');
 }
